@@ -24,6 +24,16 @@ pub mod root {
     pub mod set;
     pub mod spamedit;
 }
+pub mod tester {
+    pub mod test_audio;
+    pub mod test_document;
+    pub mod test_edit;
+    pub mod test_image;
+    pub mod test_react;
+    pub mod test_revoke;
+    pub mod test_sticker;
+    pub mod test_video;
+}
 pub mod tools {
     pub mod block;
     pub mod debug;
