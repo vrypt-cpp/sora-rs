@@ -4,7 +4,7 @@ use whatsapp_rust::Jid;
 cmd!(
     Unblock,
     name: "unblock",
-    aliases: ["bukablokir"],
+    aliases: ["unban"],
     category: "tools",
     access: { owner_only: true },
     execute: |ctx| {
@@ -29,7 +29,7 @@ cmd!(
 
         match ctx.client.blocking().unblock(&target).await {
             Ok(_) => {
-                ctx.reply(&format!("✅ Berhasil membuka blokir {}", target)).await?;
+                ctx.reply(&format!("✅ Successfully unblocked {}", target)).await?;
             }
             Err(e) => {
                 crate::logger::error("unblock", e);

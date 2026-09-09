@@ -9,10 +9,10 @@ cmd!(
     execute: |ctx| {
         match ctx.client.blocking().get_blocklist().await {
             Ok(list) if list.is_empty() => {
-                ctx.reply("*Tidak ada kontak yang diblokir*").await?;
+                ctx.reply("*No blocked contacts*").await?;
             }
             Ok(list) => {
-                let mut response = format!("*Daftar Blokir ({})*\n\n", list.len());
+                let mut response = format!("*Block List ({})*\n\n", list.len());
                 for entry in list {
                     response.push_str(&format!("• {}\n", entry.jid));
                 }

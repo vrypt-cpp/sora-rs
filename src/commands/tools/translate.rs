@@ -13,7 +13,7 @@ cmd!(
 
 async fn translate_text(ctx: Context<'_>) -> anyhow::Result<()> {
     if ctx.args.is_empty() {
-        ctx.reply("Format: .translate <kode_bahasa> <teks>\nContoh: .translate en Selamat pagi\n\nBisa juga reply pesan lalu ketik: .translate <kode_bahasa>").await?;
+        ctx.reply("Format: .translate <language_code> <text>\nExample: .translate en Selamat pagi\n\nYou can also reply to a message and type: .translate <language_code>").await?;
         return Ok(());
     }
 
@@ -30,12 +30,12 @@ async fn translate_text(ctx: Context<'_>) -> anyhow::Result<()> {
     } else if ctx.args.len() > 1 {
         ctx.args[1..].join(" ")
     } else {
-        ctx.reply("Tidak ada teks untuk diterjemahkan. Reply sebuah pesan atau sertakan teksnya.").await?;
+        ctx.reply("No text to translate. Reply to a message or include the text.").await?;
         return Ok(());
     };
 
     if text.trim().is_empty() {
-        ctx.reply("Tidak ada teks untuk diterjemahkan.").await?;
+        ctx.reply("No text to translate.").await?;
         return Ok(());
     }
 
@@ -57,13 +57,13 @@ async fn translate_text(ctx: Context<'_>) -> anyhow::Result<()> {
         Ok(res) => res,
         Err(e) => {
             crate::logger::error("translate", format!("request failed: {}", e));
-            ctx.reply("Gagal menghubungi layanan terjemahan.").await?;
+            ctx.reply("Failed to contact the translation service.").await?;
             return Ok(());
         }
     };
 
     if !response.status().is_success() {
-        ctx.reply(&format!("Layanan terjemahan mengembalikan status {}.", response.status())).await?;
+        ctx.reply(&format!("Translation service returned status {}.", response.status())).await?;
         return Ok(());
     }
 
@@ -71,7 +71,7 @@ async fn translate_text(ctx: Context<'_>) -> anyhow::Result<()> {
         Ok(json) => json,
         Err(e) => {
             crate::logger::error("translate", format!("failed to parse response: {}", e));
-            ctx.reply("Gagal membaca hasil terjemahan.").await?;
+            ctx.reply("Failed to read the translation result.").await?;
             return Ok(());
         }
     };
@@ -94,7 +94,7 @@ async fn translate_text(ctx: Context<'_>) -> anyhow::Result<()> {
         .unwrap_or("?");
 
     if translated.trim().is_empty() {
-        ctx.reply("Tidak dapat menerjemahkan teks tersebut.").await?;
+        ctx.reply("Unable to translate that text.").await?;
         return Ok(());
     }
 

@@ -4,7 +4,7 @@ use whatsapp_rust::Jid;
 cmd!(
     Block,
     name: "block",
-    aliases: ["blokir"],
+    aliases: ["ban"],
     category: "tools",
     access: { owner_only: true },
     execute: |ctx| {
@@ -29,7 +29,7 @@ cmd!(
 
         match ctx.client.blocking().block(&target).await {
             Ok(_) => {
-                ctx.reply(&format!("✅ Berhasil memblokir {}", target)).await?;
+                ctx.reply(&format!("✅ Successfully blocked {}", target)).await?;
             }
             Err(e) => {
                 crate::logger::error("block", e);

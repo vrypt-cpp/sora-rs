@@ -4,7 +4,7 @@ use whatsapp_rust::RevokeType;
 cmd!(
     Delete,
     name: "delete",
-    aliases: ["del", "hapus"],
+    aliases: ["del", "remove"],
     category: "group",
     access: { admin_only: true },
     execute: |ctx| {

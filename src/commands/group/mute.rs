@@ -5,7 +5,7 @@ use crate::cmd;
 cmd!(
     Mute,
     name: "mute",
-    aliases: ["bungkam"],
+    aliases: ["silence"],
     category: "group",
     access: { admin_only: true },
     intercept: |ctx| {

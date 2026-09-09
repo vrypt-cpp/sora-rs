@@ -3,7 +3,7 @@ use crate::cmd;
 cmd!(
     SetEphemeral,
     name: "setephemeral",
-    aliases: ["ephemeral", "pesansementara"],
+    aliases: ["ephemeral", "tempmsg"],
     category: "group",
     access: { admin_only: true },
     execute: |ctx| {
