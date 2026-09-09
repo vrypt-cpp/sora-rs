@@ -57,6 +57,8 @@ macro_rules! send_video {
                     file_sha256: Some(upload.file_sha256.to_vec()),
                     file_enc_sha256: Some(upload.file_enc_sha256.to_vec()),
                     file_length: Some(upload.file_length),
+                    media_key_timestamp: Some(upload.media_key_timestamp),
+                    streaming_sidecar: upload.streaming_sidecar.clone(),
                     mimetype: Some("video/mp4".to_string()),
                     caption: Some($caption.to_string()),
                     jpeg_thumbnail: thumbnail_bytes,
